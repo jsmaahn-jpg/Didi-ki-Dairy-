@@ -20,6 +20,9 @@ jobs:
           npm i @capacitor/core@7 @capacitor/cli@7 @capacitor/android@7 @capacitor/filesystem@7 @capacitor/share@7
           npx cap init "Didi ki Dairy" com.didi.dairy --web-dir www
           npx cap add android
+          mkdir assets
+          cp icon-only.png icon-foreground.png icon-background.png assets/
+          npx @capacitor/assets@3 generate --android
           sed -i 's|<application|<uses-permission android:name="android.permission.CAMERA" />\n    <uses-permission android:name="android.permission.RECORD_AUDIO" />\n    <application|' android/app/src/main/AndroidManifest.xml
           npx cap sync android
       - name: Build debug APK
